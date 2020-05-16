@@ -1,0 +1,136 @@
+
+
+
+class Animals:
+
+    def __init__(self, name, weight):
+        self.name = name
+        self.weight = weight
+        self.hungriness = 'Животное голодно'
+
+    def animal_voices(self,voice):
+        if voice == 'Га-га-га':
+            print('Это гусь')
+        elif voice == 'Му-у':
+            print('Это корова')
+        elif voice == 'Бе-е':
+            print('Это овца')
+        elif voice == 'Ме-е':
+            print('Это коза')
+        elif voice == 'Ко-ко-ко':
+            print('Это курица')
+        elif voice == 'Кря-кря':
+            print('Это утка')
+        else:
+          print('Странный звук, не могу распознать')
+
+    def feeding(self):
+      self.hungriness = 'Животное сыто'
+      return "Вы накормили животину с кличкой " + self.name
+
+
+class Eggy(Animals):
+
+  def __init__(self, name, weight):
+        self.name = name
+        self.weight = weight
+        self.type = 'Яйценесущее'
+        self.hungriness = 'Животное голодно'
+        self.eggs = 'Яйца есть'
+
+  def collecting_eggs(self):
+    if self.eggs == 'Яйца есть':
+      self.eggs = 'Яйца собраны'
+      return "Вы забрали яйца у птицы с кличкой " + self.name
+    else:
+      return "У птицы с кличкой " + self.name + " яиц новых нет."
+  
+
+class Milky(Animals):
+
+  def __init__(self, name, weight):
+        self.name = name
+        self.weight = weight
+        self.type = 'Молокодающее'
+        self.hungriness = 'Животное голодно'
+        self.milk = 'Молоко есть'
+
+  def collecting_milk(self):
+    if self.milk == 'Молоко есть':
+      self.milk = 'Молоко сдоено'
+      return "Вы подоили скотину с кличкой " + self.name
+    else:
+      return "У скотины с кличкой " + self.name + " молока нет."
+
+
+class Wooly(Animals):
+
+  def __init__(self, name, weight):
+        self.name = name
+        self.weight = weight
+        self.type = 'Шерстедающее'
+        self.hungriness = 'Животное голодно'
+        self.wool = 'Шерсть есть'
+
+  def collecting_wool(self):
+    if self.wool == 'Шерсть есть':
+      self.wool = 'Шерсть пострижена'
+      return "Вы постригли скотину с кличкой " + self.name
+    else:
+      return "У скотины с кличкой " + self.name + " шерсти больше нет."
+
+
+Grey_goose = Eggy("Серый",12)
+White_goose = Eggy("Белый",10)
+Only_cow = Milky("Манька",250)
+Sheep_b = Wooly("Барашек",50)
+Sheep_k = Wooly("Кудрявый",51)
+Chiken_ko = Eggy("Ко-Ко",10)
+Chiken_ku = Eggy("Кукареку",10)
+Goat_r = Milky("Рога",35)
+Goat_k = Milky("Копыта",33)
+Duck_k = Eggy("Кряква",8)
+
+animals_list = [
+Grey_goose,
+White_goose,
+Only_cow,
+Sheep_b,
+Sheep_k,
+Chiken_ko,
+Chiken_ku,
+Goat_r,
+Goat_k,
+Duck_k
+]
+
+total_weight = 0 
+highest_weight = 0
+# list_of_all_weights = []
+
+
+for animal in animals_list:
+
+  if animal.hungriness == 'Животное голодно':
+    animal.feeding()
+
+  if animal.type == 'Яйценесущее':
+    animal.collecting_eggs()
+
+  if animal.type == 'Молокодающее':
+    animal.collecting_milk()
+
+  if animal.type == 'Шерстедающее':
+    animal.collecting_wool()
+
+  if animal.weight > highest_weight:
+    highest_weight = animal.weight
+    heaviest_animal = animal.name
+
+  # list_of_all_weights.append(animal.weight)
+  total_weight = total_weight + animal.weight
+
+
+print(f"общий вес всех животных в нашем хозяйстве составляет {total_weight} кг питательного мяса")
+
+print(f"самое тяжелое животное у нас {heaviest_animal}, и весит она  {highest_weight} кг")
